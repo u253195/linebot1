@@ -184,6 +184,7 @@ def handle_message(event):
     message = TextSendMessage(text="您說了: " + event.message.text)
     src = event.source.user_id
     if 'uidlist' in local():
+        print('uidlist not defined')
     else:
         uidlist=[]
         uidlist=loaduid('userid.txt')
