@@ -1,3 +1,5 @@
+import os
+from argparse import ArgumentParser
 from flask import Flask, request, abort
 import requests
 import json
@@ -19,7 +21,15 @@ from linebot.models import (
 )
 
 app = Flask(__name__)
-
+channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
+channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
+if channel_secret is None:
+    print('Specify LINE_CHANNEL_SECRET as environment variable.')
+    sys.exit(1)
+if channel_access_token is None:
+    print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
+    sys.exit(1)
+    
 def compose16(akey):
     count=len(akey)
     add=16-(count%16)
@@ -62,9 +72,9 @@ def encryptID(aid):
     return pc.encrypt(aid).decode("utf-8")
 
 # Channel Access Token
-line_bot_api = LineBotApi('tGjLaljOe7DGN0MhRv4vJUyIFCOrV+ml3uluLkPqYTBjJco1Byc9/88r7rlAZPm+mj4UOvsMBGK4vzEFvIJsomstC+/VoUY8fZ7HJAp7tUcdC10/Zx9EQiaqtF9Q+Rn59mTj54WUaj1AkfoYyuVpkwdB04t89/1O/w1cDnyilFU=	')
+line_bot_api = LineBotApi(channel_access_token)
 # Channel Secret
-handler = WebhookHandler('24bee8cf7f46cdb6d318a92372e1bbf8')
+handler = WebhookHandler(channel_secret)
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
