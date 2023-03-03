@@ -183,6 +183,11 @@ def NuclearRadiation(plant):
 def handle_message(event):
     message = TextSendMessage(text="您說了: " + event.message.text)
     src = event.source.user_id
+    if 'uidlist' in local():
+    else
+        uidlist=[]
+        uidlist=loaduid('userid.txt')
+        
     if src in uidlist:
         rcvmsg = "您說了: " + event.message.text
         if event.message.text == "核電廠即時資訊":
