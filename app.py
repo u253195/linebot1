@@ -109,7 +109,7 @@ def erfValue(plant,pid):
 def erfValueStr(pid):
     v1=erfValue('1',pid)
     v2=erfValue('2',pid)
-    return ('#1[%8.2f], #2[%8.2f]'%(v1,v2))
+    return ('[#1]%8.2f, [#2]%8.2f'%(v1,v2))
 def NuclearPower():
     url='https://www.aec.gov.tw/nuclearlive'
     myResponse = requests.get(url)
