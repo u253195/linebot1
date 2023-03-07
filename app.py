@@ -109,7 +109,7 @@ def erfValue(plant,pid):
 def erfValueStr(pid):
     v1=erfValue('1',pid)
     v2=erfValue('2',pid)
-    return ('%8.2f, %8.2f'%(v1,v2))
+    return ('#1[%8.2f], #2[%8.2f]'%(v1,v2))
 def NuclearPower():
     url='https://www.aec.gov.tw/nuclearlive'
     myResponse = requests.get(url)
@@ -190,7 +190,13 @@ def handle_message(event):
         uidlist=loaduid('userid.txt')
         
     if src in uidlist:
-        rcvmsg = "您說了: " + event.message.text
+        rcvmsg = "我不懂: " + event.message.text + "\n請參考用法："
+        rcvmsg = rcvmsg+"ERF電腦點：輸入\n"
+        rcvmsg =  rcvmsg+"erf@XXXXXX\n"
+        rcvmsg =  rcvmsg+"XXXXXX為電腦點名稱如MAQ001\n"
+        rcvmsg=rcvmsg+"環境輻射：輸入\n"
+        rcvmsg=rcvmsg+"環境輻射即時監測X\n"
+        rcvmsg=rcvmsg+"X為1，2，3，4代表核一，核二，核三，龍門\n"
         if event.message.text == "核電廠即時資訊":
             sss=NuclearPower()
         elif event.message.text == "環境輻射即時監測1":
