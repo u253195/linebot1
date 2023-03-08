@@ -192,13 +192,8 @@ def handle_message(event):
         uidlist=loaduid('userid.txt')
         
     if src in uidlist:
-        rcvmsg = "我不懂: " + event.message.text + "\n請參考用法：\n"
-        rcvmsg = rcvmsg+"ERF電腦點資料：輸入\n"
-        rcvmsg =  rcvmsg+"erf@XXXXXX\n"
-        rcvmsg =  rcvmsg+"  XXXXXX為電腦點名稱如MAQ001\n"
-        rcvmsg=rcvmsg+"環境輻射：輸入\n"
-        rcvmsg=rcvmsg+"環境輻射即時監測X\n"
-        rcvmsg=rcvmsg+"  X為1，2，3，4代表核一，核二，核三，龍門\n"
+        rcvmsg = "我不懂: " + event.message.text
+        rcvmsg="\n"+helps
         if event.message.text == "核電廠即時資訊":
             sss=NuclearPower()
         elif event.message.text == "環境輻射即時監測1":
@@ -209,6 +204,8 @@ def handle_message(event):
             sss=NuclearRadiation('3')
         elif event.message.text == "環境輻射即時監測4":
             sss=NuclearRadiation('4')
+        elif event.message.text == "使用說明":
+            sss=helps
         elif event.message.text == "發電量":
             sss=erfValueStr('MAQ001')
         elif event.message.text[:4]=="erf@":
@@ -226,5 +223,12 @@ def handle_message(event):
 if __name__ == "__main__":
     uidlist=[]
     uidlist=loaduid('userid.txt')
+    helps="請參考用法：\n"
+    helps = helps+"-ERF電腦點資料：輸入\n"
+    helps =  helps+"erf@XXXXXX\n"
+    helps =  helps+"  XXXXXX為電腦點名稱如MAQ001\n"
+    helps=helps+"-環境輻射：輸入\n"
+    helps=helps+"環境輻射即時監測X\n"
+    helps=helps+"  X為1，2，3，4代表核一，核二，核三，龍門\n"
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
