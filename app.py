@@ -183,8 +183,8 @@ def NuclearRadiation(plant):
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-  global helps
-  global uidlist
+    global helps
+    global uidlist
     message = TextSendMessage(text="您說了: " + event.message.text)
     src = event.source.user_id
     if 'uidlist' in locals():
