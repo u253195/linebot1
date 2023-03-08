@@ -204,7 +204,6 @@ def handle_message(event):
         
     if src in uidlist:
         rcvmsg = "我不懂: " + event.message.text
-        rcvmsg="\n"+helps
         if event.message.text == "核電廠即時資訊":
             sss=NuclearPower()
         elif event.message.text == "環境輻射即時監測1":
@@ -223,7 +222,7 @@ def handle_message(event):
             erfpid=event.message.text[4:len(event.message.text)]
             sss=erfValueStr(erfpid)
         else:
-            sss=rcvmsg
+            sss=rcvmsg+"\n"+helps
     else:
         sss = '對不起！您沒有使用權，請用以下驗證碼向管理員申請\n'+encryptID(src)
 
