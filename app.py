@@ -23,6 +23,15 @@ from linebot.models import (
 app = Flask(__name__)
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
 channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
+uidlist=[]
+helps="請參考用法：\n"
+helps = helps+"-ERF電腦點資料：輸入\n"
+helps =  helps+"erf@XXXXXX\n"
+helps =  helps+"  XXXXXX為電腦點名稱如MAQ001\n"
+helps=helps+"-環境輻射：輸入\n"
+helps=helps+"環境輻射即時監測X\n"
+helps=helps+"  X為1，2，3，4代表核一，核二，核三，龍門\n"
+
 if channel_secret is None:
     print('Specify LINE_CHANNEL_SECRET as environment variable.')
     sys.exit(1)
@@ -223,14 +232,7 @@ def handle_message(event):
 
 
 if __name__ == "__main__":
-    uidlist=[]
+    global uidlist
     uidlist=loaduid('userid.txt')
-    helps="請參考用法：\n"
-    helps = helps+"-ERF電腦點資料：輸入\n"
-    helps =  helps+"erf@XXXXXX\n"
-    helps =  helps+"  XXXXXX為電腦點名稱如MAQ001\n"
-    helps=helps+"-環境輻射：輸入\n"
-    helps=helps+"環境輻射即時監測X\n"
-    helps=helps+"  X為1，2，3，4代表核一，核二，核三，龍門\n"
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
