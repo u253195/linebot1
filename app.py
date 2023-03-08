@@ -110,7 +110,7 @@ def erfValue(plant,pid):
     myResponse=requests.get(url, verify=False)
     print(myResponse.content)
     rst=myResponse.content.decode('utf-8')
-    print(rst)
+    #print(rst)
     if (myResponse.ok):
         jData=json.loads(rst)
         l1=jData['result']
