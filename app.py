@@ -25,12 +25,12 @@ channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
 channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
 uidlist=[]
 helps="請參考用法：\n"
-helps = helps+"-ERF電腦點資料：輸入\n"
-helps =  helps+"erf@XXXXXX\n"
-helps =  helps+"  XXXXXX為電腦點名稱如MAQ001\n"
 helps=helps+"-環境輻射：輸入\n"
 helps=helps+"環境輻射即時監測X\n"
 helps=helps+"  X為1，2，3，4代表核一，核二，核三，龍門\n"
+helps = helps+"-ERF電腦點資料：輸入\n"
+helps =  helps+"erf@XXXXXX\n"
+helps =  helps+"  XXXXXX為電腦點名稱如MAQ001\n"
 
 if channel_secret is None:
     print('Specify LINE_CHANNEL_SECRET as environment variable.')
@@ -108,9 +108,7 @@ def erfValue(plant,pid):
     url=urlhead+plant+',"'+pid.upper()+'")'
     #myResponse=requests.get(url,auth=("2531951", "253195"))
     myResponse=requests.get(url, verify=False)
-    print(myResponse.content)
     rst=myResponse.content.decode('utf-8')
-    #print(rst)
     if (myResponse.ok):
         jData=json.loads(rst)
         l1=jData['result']
