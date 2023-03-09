@@ -104,7 +104,7 @@ def NuclearPower():
     url='https://www.aec.gov.tw/nuclearlive'
     myResponse = requests.get(url)
     soup=BeautifulSoup(myResponse.text,'html.parser')
-    name_box=soup.find('div',attrs={'class':'page-html'})
+    name_box=soup.find('div',attrs={'id':'page-html'})
     timebox=name_box.find('span', attrs={'class':'tx','id':'timeX'})
     N11STATUSbox=name_box.find('span',attrs={'class':'tx1','id':'N11STATUS'})
     N11RATEbox=name_box.find('span',attrs={'class':'tx2','id':'N11RATEID'})
