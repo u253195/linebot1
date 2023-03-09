@@ -201,6 +201,7 @@ def handle_message(event):
         print('uidlist not defined')
     else:
         uidlist=[]
+        print('loading userid')
         uidlist=loaduid('userid.txt')
         
     if src in uidlist:
