@@ -268,15 +268,15 @@ def handle_message(event):
         elif event.message.text[:4]=="erf@":
             erfpid=event.message.text[4:len(event.message.text)]
             sss=erfValueStr(erfpid)
-        elif event.message.text[:4]=="useradd@":
+        elif event.message.text[:8]=="useradd@":
             if src==uidlist[0]:
                 userinfo=event.message.text[8:len(event.message.text)]
                 adduser(userinfo)
-        elif event.message.text[:4]=="userdel@":
+        elif event.message.text[:8]=="userdel@":
             if src==uidlist[0]:
                 userinfo=event.message.text[8:len(event.message.text)]
                 deluser(userinfo)
-        elif event.message.text[:4]=="getusers":
+        elif event.message.text[:8]=="getusers":
             if src==uidlist[0]:
                 sss=getusers()
         
