@@ -24,6 +24,7 @@ app = Flask(__name__)
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
 channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
 uidlist=[]
+namelist=[]
 helps="我只會這些：\n"
 helps=helps+"-核電廠即時資訊：輸入\n"
 helps=helps+"核電廠即時資訊\n"
@@ -82,7 +83,48 @@ def encryptID(aid):
     aeskey='253195@tpcn3'
     pc=prpcrypt(aeskey)
     return pc.encrypt(aid).decode("utf-8")
-
+def loaduser(fname):
+    aeskey='253195@tpcn3'
+    pc=prpcrypt((aeskey))
+    global uidlist, namelist
+    
+    fo=open(fname,'r')
+    for line in fo.readlines():
+        line=line.strip()
+        if len(line)>0:
+            if line[0]!='#':
+                uidlist.append(pc.decrypt(line))
+            else:
+                namelist.add(line)
+    fo.close()
+                
+def adduser(auser):
+    idx=auser.find('#')
+    uname='#'+auser(0:idx-1)
+    uid=auser(idx+1:len(auser))
+    namelist.append(uname)
+    uidlist.append(uid)
+    fo=open('userid.txt','a')
+    fo.writelines(uname)
+    fo.writelines(uid)
+    fo.close()
+def deluser(auser):
+    idx=auser.find('#')
+    uname='#'+auser(0:idx-1)
+    uid=auser(idx+1:len(auser))
+    namelist.append(uname)
+    uidlist.append(uid)
+    fo=open('userid.txt','a')
+    fo.writelines(uname)
+    fo.writelines(uid)
+    fo.close()
+def getusers():
+    rst=''
+    for aname in namelist
+      rst=aname+'\n'
+    return rst
+    
+    
 # Channel Access Token
 line_bot_api = LineBotApi(channel_access_token)
 # Channel Secret
@@ -200,7 +242,7 @@ def handle_message(event):
     message = TextSendMessage(text="您說了: " + event.message.text)
     src = event.source.user_id
     if 'uidlist' in globals():
-        print('uidlist not defined')
+#        print('uidlist defined')
     else:
         uidlist=[]
         print('loading userid')
@@ -225,6 +267,18 @@ def handle_message(event):
         elif event.message.text[:4]=="erf@":
             erfpid=event.message.text[4:len(event.message.text)]
             sss=erfValueStr(erfpid)
+        elif event.message.text[:4]=="useradd@":
+            if src=uidlist[0]:
+                userinfo=event.message.text[8:len(event.message.text)]
+                adduser(userinfo)
+        elif event.message.text[:4]=="userdel@":
+            if src=uidlist[0]:
+                userinfo=event.message.text[8:len(event.message.text)]
+                deluser(userinfo)
+        elif event.message.text[:4]=="getusers":
+            if src=uidlist[0]:
+                sss=getusers()
+        
         else:
             sss=rcvmsg+"\n"+helps
     else:
