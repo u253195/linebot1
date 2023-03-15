@@ -120,7 +120,7 @@ def deluser(auser):
     fo.close()
 def getusers():
     rst=''
-    for aname in namelist
+    for aname in namelist:
       rst=aname+'\n'
     return rst
     
