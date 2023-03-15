@@ -95,7 +95,7 @@ def loaduser(fname):
             if line[0]!='#':
                 uidlist.append(pc.decrypt(line))
             else:
-                namelist.add(line)
+                namelist.append(line)
     fo.close()
                 
 def adduser(auser):
