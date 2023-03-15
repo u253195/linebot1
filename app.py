@@ -130,7 +130,8 @@ line_bot_api = LineBotApi(channel_access_token)
 # Channel Secret
 handler = WebhookHandler(channel_secret)
 
-uidlist=loaduid('userid.txt')
+#uidlist=loaduid('userid.txt')
+loaduser('userid.txt')
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -241,12 +242,12 @@ def handle_message(event):
     global uidlist
     message = TextSendMessage(text="您說了: " + event.message.text)
     src = event.source.user_id
-    if 'uidlist' in globals():
+#    if 'uidlist' in globals():
 #        print('uidlist defined')
-    else:
-        uidlist=[]
-        print('loading userid')
-        uidlist=loaduid('userid.txt')
+#    else:
+#        uidlist=[]
+#        print('loading userid')
+#        uidlist=loaduid('userid.txt')
         
     if src in uidlist:
         rcvmsg = "我不懂: " + event.message.text
