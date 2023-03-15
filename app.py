@@ -41,6 +41,7 @@ if channel_secret is None:
 if channel_access_token is None:
     print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
     sys.exit(1)
+uidlist=loaduid('userid.txt')
     
 def compose16(akey):
     count=len(akey)
