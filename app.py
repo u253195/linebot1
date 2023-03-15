@@ -41,7 +41,6 @@ if channel_secret is None:
 if channel_access_token is None:
     print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
     sys.exit(1)
-uidlist=loaduid('userid.txt')
     
 def compose16(akey):
     count=len(akey)
@@ -88,6 +87,8 @@ def encryptID(aid):
 line_bot_api = LineBotApi(channel_access_token)
 # Channel Secret
 handler = WebhookHandler(channel_secret)
+
+uidlist=loaduid('userid.txt')
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
