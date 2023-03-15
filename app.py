@@ -121,7 +121,7 @@ def deluser(auser):
 def getusers():
     rst=''
     for aname in namelist:
-      rst=aname+'\n'
+      rst=rst+aname+'\n'
     return rst
     
     
