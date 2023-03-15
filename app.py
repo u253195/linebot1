@@ -197,7 +197,7 @@ def handle_message(event):
     global uidlist
     message = TextSendMessage(text="您說了: " + event.message.text)
     src = event.source.user_id
-    if 'uidlist' in locals():
+    if 'uidlist' in globals():
         print('uidlist not defined')
     else:
         uidlist=[]
