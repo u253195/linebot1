@@ -110,8 +110,8 @@ def adduser(auser):
     fo.close()
 def deluser(auser):
     idx=auser.find('#')
-    uname='#'+auser(0:idx-1)
-    uid=auser(idx+1:len(auser))
+    uname='#'+auser[0:idx-1]
+    uid=auser[idx+1:len(auser)]
     namelist.append(uname)
     uidlist.append(uid)
     fo=open('userid.txt','a')
