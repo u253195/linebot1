@@ -109,8 +109,8 @@ def adduser(auser):
     print(uname)
     print(uid)
     fo=open('userid.txt','a')
-    fo.writelines(uname)
-    fo.writelines(uid)
+    fo.write(uname+'\n')
+    fo.write(uid+'\n')
     fo.close()
 def deluser(auser):
     global namelist,uidlist
