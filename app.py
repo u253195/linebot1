@@ -87,7 +87,8 @@ def loaduser(fname):
     aeskey='253195@tpcn3'
     pc=prpcrypt((aeskey))
     global uidlist, namelist
-    
+    namelist=[]
+    uidlist=[]
     fo=open(fname,'r')
     for line in fo.readlines():
         line=line.strip()
@@ -99,6 +100,7 @@ def loaduser(fname):
     fo.close()
                 
 def adduser(auser):
+    global namelist,uidlist
     idx=auser.find('#')
     uname='#'+auser[0:idx-1]
     uid=auser[idx+1:len(auser)]
@@ -109,6 +111,7 @@ def adduser(auser):
     fo.writelines(uid)
     fo.close()
 def deluser(auser):
+    global namelist,uidlist
     idx=auser.find('#')
     uname='#'+auser[0:idx-1]
     uid=auser[idx+1:len(auser)]
@@ -119,6 +122,7 @@ def deluser(auser):
     fo.writelines(uid)
     fo.close()
 def getusers():
+    loaduser('userid.txt')
     rst=''
     for aname in namelist:
       rst=rst+aname+'\n'
