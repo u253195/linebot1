@@ -106,6 +106,8 @@ def adduser(auser):
     uid=auser[idx+1:len(auser)]
     namelist.append(uname)
     uidlist.append(uid)
+    print uname
+    print uid
     fo=open('userid.txt','a')
     fo.writelines(uname)
     fo.writelines(uid)
