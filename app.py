@@ -182,7 +182,7 @@ def erfValue(plant,pid):
         return l1[0]
     else:
         return -10.0
-def     erfaddlineuser(uname,uid)
+def     erfaddlineuser(uname,uid):
     urlhead='https://nu3app.taipower.com.tw:8080/n3erf/n3erfwb.dll/datasnap/rest/tservermethods1/addlineuser("'
     url=urlhead+uname+'","'+uid+'")'
     #myResponse=requests.get(url,auth=("2531951", "253195"))
