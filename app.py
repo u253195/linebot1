@@ -98,7 +98,18 @@ def loaduser(fname):
             else:
                 namelist.append(line)
     fo.close()
-                
+def loaduserfromnet(url):
+    # Define the local filename to save data
+    local_file = 'local_copy.txt'
+    # Download remote and save locally
+    data = requests.get(url)
+    # Save file data to local copy
+    file=open(local_file, 'wb')
+    file.write(data.content)
+    file.close()
+    global uidlist
+    uidlist=loaduid('local_copy.txt')
+                    
 def adduser(auser):
     global namelist,uidlist
     idx=auser.find('#')
@@ -108,6 +119,7 @@ def adduser(auser):
     uidlist.append(uid)
     print(uname)
     print(uid)
+#    erfaddlineuser(uname,uid)
     fo=open('userid.txt','a')
     fo.write(uname+'\n')
     fo.write(uid+'\n')
@@ -138,6 +150,7 @@ handler = WebhookHandler(channel_secret)
 
 #uidlist=loaduid('userid.txt')
 loaduser('userid.txt')
+#loaduserfromnet('https://wapp4.taipower.com.tw/nsis/operation/userid.txt')
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -158,7 +171,7 @@ def callback():
     return 'OK'
 
 def erfValue(plant,pid):
-    urlhead='https://n3erf.taipower.com.tw:8080/n3erf/n3erfwb.dll/datasnap/rest/tservermethods1/jcvtdata_pid('
+    urlhead='https://nu3app.taipower.com.tw:8080/n3erf/n3erfwb.dll/datasnap/rest/tservermethods1/jcvtdata_pid('
     url=urlhead+plant+',"'+pid.upper()+'")'
     #myResponse=requests.get(url,auth=("2531951", "253195"))
     myResponse=requests.get(url, verify=False)
@@ -169,6 +182,19 @@ def erfValue(plant,pid):
         return l1[0]
     else:
         return -10.0
+def     erfaddlineuser(uname,uid)
+    urlhead='https://nu3app.taipower.com.tw:8080/n3erf/n3erfwb.dll/datasnap/rest/tservermethods1/addlineuser("'
+    url=urlhead+uname+'","'+uid+'")'
+    #myResponse=requests.get(url,auth=("2531951", "253195"))
+    myResponse=requests.get(url, verify=False)
+    rst=myResponse.content.decode('utf-8')
+    if (myResponse.ok):
+        jData=json.loads(rst)
+        l1=jData['result']
+        return l1[0]
+    else:
+        return -10.0
+
 def erfValueStr(pid):
     v1=erfValue('1',pid)
     v2=erfValue('2',pid)
