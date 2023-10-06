@@ -175,7 +175,8 @@ def erfValue(plant,pid):
     url=urlhead+plant+',"'+pid.upper()+'")'
     #myResponse=requests.get(url,auth=("2531951", "253195"))
     myResponse=requests.get(url, verify=False)
-    rst=myResponse.content.decode('utf-8')
+#    rst=myResponse.content.decode('utf-8')
+    rst=myResponse.content
     if (myResponse.ok):
         jData=json.loads(rst)
         l1=jData['result']
