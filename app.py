@@ -201,7 +201,7 @@ def erfValueStr(pid):
     v2=erfValue('2',pid)
     return ('[#1]%8.2f, [#2]%8.2f'%(v1,v2))
 def NuclearPower():
-    url='https://www.aec.gov.tw/nuclearlive'
+    url='https://www.nusc.gov.tw/nuclearlive'
     myResponse = requests.get(url)
     soup=BeautifulSoup(myResponse.text,'html.parser')
     name_box=soup.find('div',attrs={'id':'page-html'})
@@ -229,7 +229,7 @@ def NuclearPower():
     LL3='核能三廠\n#1:'+N31STATUSbox.text+'('+N31RATEbox.text+','+N31GENbox.text+')\n#2:'+N32STATUSbox.text+'('+N32RATEbox.text+','+N32GENbox.text+')'
     return(timebox.text.strip()+'\n'+LL1+'\n'+LL2+'\n'+LL3)
 def NuclearRadiation(plant):
-    url = 'https://www.aec.gov.tw/gammadetect/npp'+plant+'.html'
+    url = 'https://www.nusc.gov.tw/gammadetect/npp'+plant+'.html'
     myResponse = requests.get(url)
     name_box=BeautifulSoup(myResponse.text,'html.parser')
     N0name=name_box.find('span',attrs={'class':'gamma_bk15','id':'monName_0_0'})
