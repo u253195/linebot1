@@ -208,7 +208,7 @@ def NuclearPower():
     steps='step2';
     name_box=soup.find('div',attrs={'id':'page-html'})
     steps='step3';
-    timebox=name_box.find('span', attrs={'class':'tx','id':'timeX'})
+#    timebox=name_box.find('span', attrs={'class':'tx','id':'timeX'})
     steps='step4';
     N11STATUSbox=name_box.find('span',attrs={'class':'tx1','id':'N11STATUS'})
     steps='step5';
