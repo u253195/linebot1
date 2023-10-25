@@ -35,6 +35,9 @@ helps=helps+"  X為1，2，3，4代表核一，核二，核三，龍門\n"
 helps = helps+"-ERF電腦點資料：輸入\n"
 helps =  helps+"erf@XXXXXX\n"
 helps =  helps+"  XXXXXX為電腦點名稱如MAQ001\n"
+helps = helps+"-近3日為結案請修單：輸入\n"
+helps =  helps+"swr@uX\n"
+helps=helps+"  X為1，2代表一號機，二號機\n"
 
 if channel_secret is None:
     print('Specify LINE_CHANNEL_SECRET as environment variable.')
