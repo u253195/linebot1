@@ -203,15 +203,10 @@ def erfValueStr(pid):
 def NuclearPower():
     url='https://www.nusc.gov.tw/nuclearlive'
     myResponse = requests.get(url)
-    steps='step1';
-    soup=BeautifulSoup(myResponse.text,'html.parser')
-    steps='step2';
-    name_box=soup.find('div',attrs={'id':'page-html'})
-    steps='step3';
-#    timebox=name_box.find('span', attrs={'class':'tx','id':'timeX'})
-    steps='step4';
+    name_box=BeautifulSoup(myResponse.text,'html.parser')
+#    name_box=soup.find('div',attrs={'id':'page-html'})
+    timebox=name_box.find('span', attrs={'class':'tx','id':'timeX'})
     N11STATUSbox=name_box.find('span',attrs={'class':'tx1','id':'N11STATUS'})
-    steps='step5';
     N11RATEbox=name_box.find('span',attrs={'class':'tx2','id':'N11RATEID'})
     N11GENbox=name_box.find('span',attrs={'class':'tx2','id':'N11GENID'})
     N12STATUSbox=name_box.find('span',attrs={'class':'tx1','id':'N12STATUS'})
@@ -229,12 +224,10 @@ def NuclearPower():
     N32STATUSbox=name_box.find('span',attrs={'class':'tx1','id':'N32STATUS'})
     N32RATEbox=name_box.find('span',attrs={'class':'tx2','id':'N32RATEID'})
     N32GENbox=name_box.find('span',attrs={'class':'tx2','id':'N32GENID'})
-    steps='step6';
     LL1='核能一廠\n#1:'+N11STATUSbox.text+'('+N11RATEbox.text+','+N11GENbox.text+')\n#2:'+N12STATUSbox.text+'('+N12RATEbox.text+','+N12GENbox.text+')'
     LL2='核能二廠\n#1:'+N21STATUSbox.text+'('+N21RATEbox.text+','+N21GENbox.text+')\n#2:'+N22STATUSbox.text+'('+N22RATEbox.text+','+N22GENbox.text+')'
     LL3='核能三廠\n#1:'+N31STATUSbox.text+'('+N31RATEbox.text+','+N31GENbox.text+')\n#2:'+N32STATUSbox.text+'('+N32RATEbox.text+','+N32GENbox.text+')'
-#    return(timebox.text.strip()+'\n'+LL1+'\n'+LL2+'\n'+LL3)
-    return(steps)
+    return(timebox.text.strip()+'\n'+LL1+'\n'+LL2+'\n'+LL3)
 def NuclearRadiation(plant):
     url = 'https://www.nusc.gov.tw/gammadetect/npp'+plant+'.html'
     myResponse = requests.get(url)
