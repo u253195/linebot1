@@ -171,8 +171,8 @@ def callback():
     return 'OK'
 
 def erfValue(plant,pid):
-    urlhead='https://nu3app.taipower.com.tw:8080/n3erf/n3erfwb.dll/datasnap/rest/tservermethods1/jcvtdata_pid('
-    url=urlhead+plant+',"'+pid.upper()+'")'
+    urlhead='https://nu3app.taipower.com.tw:8080/n3erf/n3erfwb.dll/datasnap/rest/tservermethods1/jcvt_pid('
+    url=urlhead+'"'+plant+'","'+pid.upper()+'")'
     #myResponse=requests.get(url,auth=("2531951", "253195"))
     myResponse=requests.get(url, verify=False)
 #    rst=myResponse.content.decode('utf-8')
