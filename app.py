@@ -304,6 +304,8 @@ def handle_message(event):
         elif event.message.text[:4]=="erf@":
             erfpid=event.message.text[4:len(event.message.text)]
             sss=erfValueStr(erfpid)
+        elif event.message.text == "運轉狀況":
+            sss="https://nu3app.taipower.com.tw:8080/n3web/g0item1.htm"
         elif event.message.text == "swr@u1":
             sss="https://nu3app.taipower.com.tw:8080/n3web/g0item7.htm"
         elif event.message.text == "swr@u2":
