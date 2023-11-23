@@ -5,6 +5,7 @@ import requests
 import json
 import sys
 import ssl
+import ftplib
 from Crypto.Cipher import AES
 from binascii import b2a_hex, a2b_hex
 
@@ -75,6 +76,20 @@ class prpcrypt():
         cryptor = AES.new(self.key, self.mode, self.key)
         plain_text = cryptor.decrypt(a2b_hex(text)).decode("utf-8")
         return plain_text.rstrip('\0')
+
+def ftpget(ftpsrv,userid,userpwd,rdir,fname):
+    session=ftplib.FTP_TLS(ftpsrv,userid,userpwd)
+    afile=open(fname,'rb')
+    session.store()
+    afile.close()
+    session.quit
+def ftpput(ftpsrv,userid,userpwd,rdir,fname):
+    session=ftplib.FTP_TLS(ftpsrv,userid,userpwd)
+    afile=open(fname,'w')
+    session.retr()
+    afile.close()
+    session.quit
+  
 def loaduid(fname):
     aeskey='253195@tpcn3'
     pc=prpcrypt((aeskey))
