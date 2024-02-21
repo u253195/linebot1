@@ -193,7 +193,7 @@ def callback():
     return 'OK'
 
 def erfValue(plant,pid):
-    urlhead='https://nu3app.taipower.com.tw:8080/n3erf/n3erfwb.dll/datasnap/rest/tservermethods1/jcvt_pid('
+    urlhead='https://service.taipower.com.tw/wapp4/n3erf/ds_n3.dll/datasnap/rest/tservermethods1/jcvt_pid('
     url=urlhead+'"'+plant+'","'+pid.upper()+'")'
     #myResponse=requests.get(url,auth=("2531951", "253195"))
     myResponse=requests.get(url, verify=False)
@@ -206,7 +206,8 @@ def erfValue(plant,pid):
     else:
         return -10.0
 def     erfaddlineuser(uname,uid):
-    urlhead='https://nu3app.taipower.com.tw:8080/n3erf/n3erfwb.dll/datasnap/rest/tservermethods1/addlineuser("'
+#    urlhead='https://nu3app.taipower.com.tw:8080/n3erf/n3erfwb.dll/datasnap/rest/#tservermethods1/addlineuser("'
+    urlhead='https://service.taipower.com.tw/wapp4/n3erf/ds_n3.dll/datasnap/rest/tservermethods1/addlineuser("'
     url=urlhead+uname+'","'+uid+'")'
     #myResponse=requests.get(url,auth=("2531951", "253195"))
     myResponse=requests.get(url, verify=False)
@@ -324,13 +325,13 @@ def handle_message(event):
             erfpid=event.message.text[4:len(event.message.text)]
             sss=erfValueStr(erfpid)
         elif event.message.text == "會議排程":
-            sss="https://nu3app.taipower.com.tw:8080/n3web/g0item4.htm"
+            sss="https://service.taipower.com.tw/wapp4/operation/n3web/g0item4.htm"
         elif event.message.text == "運轉狀況":
-            sss="https://nu3app.taipower.com.tw:8080/n3web/g0item1.htm"
+            sss="https://service.taipower.com.tw/wapp4/operation/n3web/g0item1.htm"
         elif event.message.text == "swr@u1":
-            sss="https://nu3app.taipower.com.tw:8080/n3web/g0item7.htm"
+            sss="https://service.taipower.com.tw/wapp4/operation/n3web/g0item7.htm"
         elif event.message.text == "swr@u2":
-            sss="https://nu3app.taipower.com.tw:8080/n3web/g0item8.htm"
+            sss="https://service.taipower.com.tw/wapp4/operation/n3web/g0item8.htm"
         elif event.message.text[:8]=="useradd@":
             if src==uidlist[0]:
                 userinfo=event.message.text[8:len(event.message.text)]
