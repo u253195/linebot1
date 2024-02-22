@@ -192,6 +192,18 @@ def callback():
 
     return 'OK'
 
+def erfTest(plant,pid):
+    urlhead='https://service.taipower.com.tw/wapp4/n3erf/ds_n3.dll/datasnap/rest/tservermethods1/p_jtest()'
+    #myResponse=requests.get(url,auth=("2531951", "253195"))
+    myResponse=requests.get(url, verify=False)
+#    rst=myResponse.content.decode('utf-8')
+    rst=myResponse.content
+    if (myResponse.ok):
+        jData=json.loads(rst)
+        l1=jData['result']
+        return l1[0]
+    else:
+        return -10.0
 def erfValue(plant,pid):
     urlhead='https://service.taipower.com.tw/wapp4/n3erf/ds_n3.dll/datasnap/rest/tservermethods1/p_jcvt_pid('
     url=urlhead+'"'+plant+'","'+pid.upper()+'")'
@@ -321,6 +333,8 @@ def handle_message(event):
             sss=helps
         elif event.message.text == "發電量":
             sss=erfValueStr('MAQ001')
+        elif event.message.text == "erftest":
+            sss=erfTest('1','MAQ001')
         elif event.message.text[:4]=="erf@":
             erfpid=event.message.text[4:len(event.message.text)]
             sss=erfValueStr(erfpid)
