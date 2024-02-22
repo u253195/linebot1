@@ -235,7 +235,7 @@ def erfValueStr(pid):
     v1=erfValue('1',pid)
     v2=erfValue('2',pid)
     return ('[#1]%8.2f, [#2]%8.2f'%(v1,v2))
-def erfteststr
+def erfteststr()
     v1=erfTest('1','abcdef')
     return('testvaule:%8.2f'%(v1))
 def NuclearPower():
@@ -337,7 +337,7 @@ def handle_message(event):
         elif event.message.text == "發電量":
             sss=erfValueStr('MAQ001')
         elif event.message.text == "erftest":
-            sss=erfteststr
+            sss=erfteststr()
         elif event.message.text[:4]=="erf@":
             erfpid=event.message.text[4:len(event.message.text)]
             sss=erfValueStr(erfpid)
