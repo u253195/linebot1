@@ -194,6 +194,7 @@ def callback():
 
 def erfTest(plant,pid):
     urlhead='https://service.taipower.com.tw/wapp4/n3erf/ds_n3.dll/datasnap/rest/tservermethods1/p_jtest()'
+    url=urlhead
     #myResponse=requests.get(url,auth=("2531951", "253195"))
     myResponse=requests.get(url, verify=False)
 #    rst=myResponse.content.decode('utf-8')
